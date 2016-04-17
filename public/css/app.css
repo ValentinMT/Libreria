@@ -1,0 +1,139 @@
+/*
+	Selectores CSS3
+		clases		"."
+		id 			"#"
+		etiquetas 	"tag"
+*/
+body{
+	background-image: url("/imagenes/fondo-final.jpg"); 
+}
+
+#slider-libreria, #section2{
+	margin-top: 30px;
+}
+
+.slider .indicators .indicator-item.active{
+	background-color: #00838f;
+}
+
+.btn-social{
+	font-size: 20px;
+	margin-left: 20px;
+}
+
+#form{
+	text-align: center;
+	background-color: #e0f2f1;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	width: 350px;
+	padding-left: 30px;
+	padding-right: 40px;
+	box-shadow: 7px 7px 7px 0px rgba(0,0,0,0.100);
+	border: 1px solid #b2dfdb;
+}
+
+#registrate{
+	text-align: center;
+	background-color: #e0f2f1;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	width: 500px;
+	height: 500px;
+	padding-left: 30px;
+	padding-right: 40px;
+	box-shadow: 7px 7px 7px 0px rgba(0,0,0,0.100);
+	border: 1px solid #b2dfdb;
+}
+
+#texto{
+	color: #006064;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+#parr{
+	font-size: 16px;
+	text-align: justify;
+	margin-left: 20px;
+	margin-right: 40px;
+}
+
+h4, h6{
+	color: #006064;
+	font-weight: bold;
+	text-align: justify;
+}
+
+h5{
+	color: #006064;
+	font-weight: bold;
+	text-align: justify;
+	margin-left: 15px;
+}
+
+#correcto{
+	color: #006064;
+	font-weight: bold;
+	text-align: center;
+}
+
+/*Para cambiar el color de las líneas de los input-field*/
+.input-field input[type=text]:focus{
+    border-bottom: 1px solid #006064;
+    box-shadow: 0 1px 0 0 #006064;
+    color: #006064;
+}
+
+.input-field input[type=password]:focus{
+    border-bottom: 1px solid #006064;
+    box-shadow: 0 1px 0 0 #006064;
+    color: #006064;
+}
+
+.input-field input[type=email]:focus{
+    border-bottom: 1px solid #006064;
+    box-shadow: 0 1px 0 0 #006064;
+    color: #006064;
+}
+
+.form-acceso{
+	margin-top: 40px;
+	height: 340px;
+	width: 500px;
+}
+
+.form-panel{
+	color: #006064;
+	padding-top: 20px;
+}
+
+.active-item{
+	background-color: #006064;
+}
+
+#boton{
+	margin-top: 20px;
+	margin-bottom: 20px;
+	background-color: #00838f;
+	height: 60px;
+	width: 200px;
+	border-radius: 20px;
+	font-weight: bold;
+	line-height: 40px;
+}
+
+.error{
+	color: red;
+	padding: 3px;
+}
+
+/*p{
+	border: 1px solid;
+	margin-top: 50px;
+	padding-top: 50px;
+}
+
+#section2{
+	margin-top: 30px;
+}*/
