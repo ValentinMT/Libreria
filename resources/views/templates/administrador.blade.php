@@ -1,3 +1,6 @@
+<?php session_start() ?> <!--Sirve para verificar que exista una variable de sesion, si está existe,
+carga todo lo que sigue, sino, se regresa.-->
+
 <!DOCTYPE html>
 
 <html lang="en">

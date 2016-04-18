@@ -60,6 +60,7 @@ Route::group(['middleware' => 'admin'], function() {
 	//get('/administrador/panel', ['middleware'=>'auth.basic','uses'=>'AdministradorController@index']);
     get('/administrador', 'AdministradorController@index');
     get('/logout', 'AdministradorController@logout');
+    get('/administrador/libros', 'LibrosController@index');
 	//https://styde.net/sistema-de-autenticacion-de-usuarios-en-laravel/
 });
 

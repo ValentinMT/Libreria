@@ -18,6 +18,7 @@ class admin
         //Lógica del middleware.
         //Pregunta si la sesión existe.
         if(!session()->has('administrador')) {
+            //return redirect('/acceder');
             return back();
         }
         return $next($request);

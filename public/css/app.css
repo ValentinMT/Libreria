@@ -116,11 +116,11 @@ h5{
 	margin-top: 20px;
 	margin-bottom: 20px;
 	background-color: #00838f;
-	height: 60px;
+	/*height: 45px;*/
 	width: 200px;
 	border-radius: 20px;
 	font-weight: bold;
-	line-height: 40px;
+	line-height: 50px;
 }
 
 .error{
