@@ -97,15 +97,50 @@ h5{
     color: #006064;
 }
 
+.input-field input[type=text]{
+    border-bottom: 1px solid #006064;
+    box-shadow: 0 1px 0 0 #006064;
+    color: #006064;
+}
+
+.input-field input[type=password]{
+    border-bottom: 1px solid #006064;
+    box-shadow: 0 1px 0 0 #006064;
+    color: #006064;
+}
+
+.input-field input[type=email]{
+    border-bottom: 1px solid #006064;
+    box-shadow: 0 1px 0 0 #006064;
+    color: #006064;
+}
+
 .form-acceso{
 	margin-top: 40px;
 	height: 340px;
-	width: 500px;
+	width: 400px;
+	border-radius: 20px;
 }
 
 .form-panel{
 	color: #006064;
 	padding-top: 20px;
+	border-radius: 10px;
+}
+
+.form-registro{
+	/*margin-top: 30px;*/
+	height: 510px;
+	width: 580px;
+	border-radius: 20px;
+	padding: 30px;
+}
+
+.form-registro2{
+	/*margin-top: 30px;*/
+	height: 510px;
+	width: 250px;
+	border-radius: 20px;
 }
 
 .active-item{
@@ -128,6 +163,22 @@ h5{
 	padding: 3px;
 }
 
+.separador{
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+.activeMenu{
+	border-radius: 5px;
+	padding: 10px;
+	background: #CCC;
+}
+
+#boton-agregar{
+	width: 180px;
+	height: 50px;
+	border-radius: 10px;
+}
 /*p{
 	border: 1px solid;
 	margin-top: 50px;

@@ -60,7 +60,14 @@ Route::group(['middleware' => 'admin'], function() {
 	//get('/administrador/panel', ['middleware'=>'auth.basic','uses'=>'AdministradorController@index']);
     get('/administrador', 'AdministradorController@index');
     get('/logout', 'AdministradorController@logout');
-    get('/administrador/libros', 'LibrosController@index');
+    Route::resource('/administrador/libros', 'LibrosController');
+
+    post('/idiomas', 'IdiomasController@store');
+    post('/editoriales', 'EditorialesController@store');
+    post('/autores', 'AutoresController@store');
+
+    //get('/administrador/libros', 'LibrosController@index');
+    //get('/administrador/libros/create', 'LibrosController@create');
 	//https://styde.net/sistema-de-autenticacion-de-usuarios-en-laravel/
 });
 

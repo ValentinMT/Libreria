@@ -14,13 +14,13 @@
 		 				{{csrf_field()}}
 		 				<div class="row">
 		 					<div class="input-field col s12">
-		 						<input id="email" type="email" name="email" class="validate">
+		 						<input id="email" type="email" name="email" class="validate" required>
           						<label for="email"><i class="fa fa-envelope"></i> Email</label>
 		 					</div>
 		 				</div>
 		 				<div class="row">
 		 					<div class="input-field col s12">
-		 						<input id="password" type="password" name="password" class="validate">
+		 						<input id="password" type="password" name="password" class="validate" required>
           						<label for="password"><i class="fa fa-key"></i> Password</label>
 		 					</div>
 		 				</div>
@@ -30,7 +30,6 @@
 		 							Acceder
 		 						</button>
 		 					</div>
-		 					
 		 				</div>
 		 			</form>
 		 		</div>

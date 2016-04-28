@@ -7,7 +7,8 @@
 		<div class="row">
 		 	<div class="col s12">
 		 		<h4><center>Panel de administración</center></h4>
-		 		<h6><center><a href="/administrador" style="color:#006064"><b>Menú principal</b></a></center></h6>
+		 		<h6><center><a class="activeMenu" style="color:#006064"><b>Menú principal</b></a></center></h6>
+		 		<br>
 		 		<img src="/imagenes/administ.png">
 		 	</div>
 

@@ -7,11 +7,10 @@
 		<div class="row">
 		 	<div class="col s12">
 		 		<h4><center>Panel de administración de libros</center></h4>
-		 		<a href="/administrador" style="color:#006064"><b>Menú principal</b></a>
-		 		<span class="separador"> | </span>
-		 		<a href="/administrador/libros" style="color:#006064"><b>Libros</b></a>
-		 		</br>
-		 		<img src="/imagenes/administ.png">
+		 		<a href="/administrador" style="color:#006064" align=left><b>Menú principal</b></a>
+		 		<span class="separador">|</span>
+		 		<a class="activeMenu" style="color:#006064"><b>Libros</b></a>
+		 		<br><br>
 		 	</div>
 
 		 	<div class="row">
@@ -49,7 +48,8 @@
 		 				</div>
 		 			</a>
 		 		</div>
-		 </div>
+			</div>
+		</div>
 	</center>
 </div>
 

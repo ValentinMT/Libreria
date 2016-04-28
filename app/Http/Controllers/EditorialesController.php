@@ -7,24 +7,28 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use App\Idioma;
 use App\Editorial;
-use App\Autor;
 
-class LibrosController extends Controller
+class EditorialesController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
-        return view('administrador.libros.index');
+        //
     }
 
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function create()
     {
-        $Idioma = Idioma::all();
-        $Editorial = Editorial::all();
-        $Autor = Autor::all();
-        return view('administrador.libros.create',
-            compact('Idioma', 'Editorial', 'Autor'));
+        //
     }
 
     /**
@@ -35,12 +39,8 @@ class LibrosController extends Controller
      */
     public function store(Request $request)
     {
-        //return $request->all();
-        $file = $request->file('image'); 
-        if ($request->hasFile('image')) {
-            dd($file);
-        }
-        return back()->with('error-file', true);
+        $Editorial = Editorial::create($request->all());
+        return redirect("/administrador/libros/create");
     }
 
     /**

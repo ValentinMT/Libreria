@@ -22,5 +22,13 @@ class admin
             return back();
         }
         return $next($request);
+
+        /*if(\Auth::check()){
+            if(\Auth::user()->tipo == 1){
+                return $next($request);
+            }
+            return redirect('/acceder');
+        }
+        return redirecto('/acceder');*/
     }
 }

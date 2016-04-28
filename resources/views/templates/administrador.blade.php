@@ -62,8 +62,10 @@ carga todo lo que sigue, sino, se regresa.-->
     </footer>
 
 	<script src="/js/jquery-2.2.1.min.js"></script>
+	<script src="/js/vue.js"></script>
 	<script src="/js/materialize.min.js"></script>
 	<script src="/js/app.js"></script>
+	@yield('scripts')
 </body>
 
 </html>
