@@ -62,9 +62,30 @@ Route::group(['middleware' => 'admin'], function() {
     get('/logout', 'AdministradorController@logout');
     Route::resource('/administrador/libros', 'LibrosController');
 
-    post('/idiomas', 'IdiomasController@store');
-    post('/editoriales', 'EditorialesController@store');
-    post('/autores', 'AutoresController@store');
+    //post('/administrador/libros/idiomas', 'IdiomasController@store');
+    //post('/administrador/libros/editoriales', 'EditorialesController@store');
+    //post('/administrador/libros/autores', 'AutoresController@store');
+
+    post('/administrador/libros/idiomas',function(){
+        if(App\Idioma::create(Request::all())){
+            return redirect("/administrador/libros/create");
+        }
+    });
+
+    post('/administrador/libros/editoriales',function(){
+        if(App\Editorial::create(Request::all())){
+            return redirect("/administrador/libros/create");
+        }
+    });
+
+    /*get('/administrador/libros/autores',function(){
+        return App\Autor::all();
+    });*/
+    post('/administrador/libros/autores',function(){
+        if(App\Autor::create(Request::all())){
+            return redirect("/administrador/libros/create");
+        }
+    });
 
     //get('/administrador/libros', 'LibrosController@index');
     //get('/administrador/libros/create', 'LibrosController@create');

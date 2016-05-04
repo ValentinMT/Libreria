@@ -3,8 +3,6 @@
 //$( document ).ready(function(){})
 $(".button-collapse").sideNav();
 
-$('.slider').slider();
-
 $('li > a').click(function() {
     $('li').removeClass();
     $(this).parent().addClass('active');
@@ -12,8 +10,11 @@ $('li > a').click(function() {
 
 $(document).ready(function(){
 	// the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+    $('.slider').slider();
     $('.modal-trigger').leanModal();
     $('select').material_select();
+    $('.tooltipped').tooltip({delay: 50});
+
 });
 
 /*$('#modal1').openModal();

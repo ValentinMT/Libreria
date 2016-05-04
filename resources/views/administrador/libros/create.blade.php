@@ -18,7 +18,7 @@
 		 		<div class="col s8">
 		 			<center>
 		 				<h5><b>Registrar libro</b></h5>
-		 				<label>@{{nombre}}</label>
+		 				<!--<label>@{{titulo}}</label>-->
 		 			</center>	
 		 		</div>
 		 	</div>
@@ -30,7 +30,7 @@
 	 					<div class="card-panel form-registro">
 			 				<div class="row">
 			 					<div class="input-field col s12">
-			 						<input type="text" name="nombre" v-model="nombre" class="validate">
+			 						<input type="text" name="nombre" v-model="titulo" class="validate">
 		      						<label id="texto" for="nombre"><i class="fa fa-book" aria-hidden="true"></i> Título del libro</label>
 			 					</div>
 			 				</div>
@@ -152,7 +152,11 @@
 </div>
 
 <!-- Modal Structure para idiomas-->
-<form action="/idiomas" method="POST">
+<form action="/administrador/libros/idiomas" method="POST" @submit.prevent="registrarIdioma">
+	<!-- 
+		@submit.prevent (controlador de evento). Manda a llamar al método que hará la opción de inserción en la base. 
+		@ equivale a v-on (sintáxis de Vue).
+	-->
 	{{csrf_field()}}
 	<div id="altaIdiomas" class="modal modal-fixed-footer">
 		<div class="modal-content">
@@ -160,20 +164,22 @@
 	    	<br>
 	      	<div class="row">
 				<div class="input-field col s8">
-					<input type="text" name="nombre" class="validate" required>
+					<input type="text" name="nombre" class="validate" required v-model="nuevoidioma.nombre" value="{{ old('nombre') }}"/>
+					<!--objeto JSON: v-model="nuevoidioma.nombre", nuevoidioma (objeto) y nombre (atributo)-->
 					<label id="texto" for="nombre">Nombre</label>
 				</div>
 			</div>
 	    </div>
 	    <div class="modal-footer">
 	    	<div class="row">
-	    		<div class="col s6">
+	    		<!--<div class="col s6">
 			  		<a href="/administrador/libros/create" class="btn waves-effect waves-light cyan darken-3">
 						Cancelar
 					</a>
-				</div>
-				<div class="col s6">
-		    		<button class="btn waves-effect waves-light cyan darken-3" type="submit" name="action">
+				</div>-->
+				<div class="col s12"> <!--v-show="nuevoidioma.nombre"-->
+		    		<button class="btn waves-effect waves-light cyan darken-3" type="submit" name="action"
+		    			onclick="Materialize.toast('Editorial agregado correctamente', 3000, 'rounded');">
 			    		Guardar 
 			  		</button>
 		  		</div>
@@ -183,33 +189,34 @@
 </form>
 
 <!-- Modal Structure para editoriales-->
-<form action="/editoriales" method="POST">
+<form action="/administrador/libros/editoriales" method="POST" @submit.prevent="registrarEditorial">
 	{{csrf_field()}}
 	<div id="altaEditoriales" class="modal modal-fixed-footer">
 		<div class="modal-content">
 	    	<h4>Agregar nueva editorial</h4>
 	      	<div class="row">
 				<div class="input-field col s8">
-					<input type="text" name="nombre" class="validate" required>
+					<input type="text" name="nombre" class="validate" required v-model ="nuevoeditorial.nombre"value="{{ old('nombre') }}" />
 					<label id="texto" for="nombre">Nombre</label>
 				</div>
 			</div>
 			<div class="row">
 				<div class="input-field col s8">
-						<input type="text" name="telefono" class="validate">
+						<input type="text" name="telefono" class="validate" v-model ="nuevoeditorial.telefono"value="{{ old('telefono') }}">
 					    <label id="texto" for="telefono">Teléfono</label>
 				</div>
 			</div>
 	    </div>
 	    <div class="modal-footer">
 	    	<div class="row">
-	    		<div class="col s6">
+	    		<!--<div class="col s6">
 			  		<a href="/administrador/libros/create" class="btn waves-effect waves-light cyan darken-3">
 						Cancelar
 					</a>
-				</div>
-				<div class="col s6">
-		    		<button class="btn waves-effect waves-light cyan darken-3" type="submit" name="action">
+				</div>-->
+				<div class="col s12"> <!--v-show="nuevoeditorial.nombre"-->
+		    		<button class="btn waves-effect waves-light cyan darken-3" type="submit" name="action"
+		    			onclick="Materialize.toast('Editorial agregada correctamente', 3000, 'rounded');">
 			    		Guardar 
 			  		</button>
 		  		</div>
@@ -219,27 +226,28 @@
 </form>
 
 <!-- Modal Structure para autores-->
-<form action="/autores" method="POST">
+<form action="/administrador/libros/autores" method="POST" @submit.prevent="registrarAutor">
 	{{csrf_field()}}
 	<div id="altaAutores" class="modal modal-fixed-footer">
 		<div class="modal-content">
 	    	<h4>Agregar nuevo autor</h4>
 	      	<div class="row">
 				<div class="input-field col s8">
-					<input type="text" name="nombre" class="validate" required>
+					<input type="text" name="nombre" class="validate" v-model="nuevoautor.nombre" value="{{ old('nombre') }}"/>
 					<label id="texto" for="nombre">Nombre</label>
 				</div>
 			</div>
 	    </div>
 	    <div class="modal-footer">
 	    	<div class="row">
-	    		<div class="col s6">
+	    		<!--<div class="col s6">
 			  		<a href="/administrador/libros/create" class="btn waves-effect waves-light cyan darken-3">
 						Cancelar
 					</a>
-				</div>
-				<div class="col s6">
-		    		<button class="btn waves-effect waves-light cyan darken-3" type="submit" name="action">
+				</div>-->
+				<div class="col s12"> <!--v-show="nuevoautor.nombre"-->
+		    		<button class="btn waves-effect waves-light cyan darken-3" type="submit" name="action"
+		    			onclick="Materialize.toast('Autor agregado correctamente', 3000, 'rounded');">
 			    		Guardar 
 			  		</button>
 		  		</div>
@@ -252,29 +260,64 @@
 
 @section('scripts')
 
-<script >
-	
-//$(document.ready(function(){}));
+<script >	
+	//$(document.ready(function(){}));
 
-//JQUERY
-/*
-$(function(){
-	alert("Vamos a registrar");
-});
-*/
+	//JQUERY
+	/*
+	$(function(){ //Equivalente a utilizar ready.
+		alert("Vamos a registrar");
+	});
+	*/
 
-//VUE JS
-
-new Vue({
-	el: "body", //Elemento sobre el que vamos a trabajar.
-	data: {
-		nombre: ""
-	},
-	ready: function(){
-		//alert("Hola Vue.js");
-	},
-});
-
+	//VUE JS
+	Vue.http.headers.common['X-CSRF-TOKEN'] = document.querySelector('#token').getAttribute('value');
+	//Se utiliza para poder tomar datos de frameworks externos, si se elimina únicamente podré utilizar laravel.
+	new Vue({
+		//Atributos.
+		el: 'body', //Elemento sobre el que vamos a trabajar.
+		data: {
+			//titulo: ""
+			nuevoidioma: { //Objeto.
+				nombre:"", //Atributo.
+			},
+			nuevoeditorial: {
+				nombre:"",
+				telefono:"",
+			},
+			nuevoautor: {
+				nombre:"",
+			}
+		},
+		//Métodos.
+		ready: function(){
+			//alert("Hola Vue.js");
+			//this.registrarAutor();
+		},
+		methods: {
+			registrarIdioma: function(e){
+				e.preventDefault();
+				//Se extrae todo lo que contiene el objeto JSON creado (nuevoidioma),
+				//y se almacena en una variable tipo var.
+				var nombre = this.nuevoidioma;
+				//Después se manda dicha variable (contiene la información) por AJAX a la ruta.
+				//Por ello Laravel necesita comprobar con una llave de toquen que la info. es válida.
+				this.$http.post('/administrador/libros/idiomas', nombre);
+				//Se limpia la información de los atributos con AJAX.
+				this.nuevoidioma = {nombre:''};
+			},
+			registrarEditorial: function(e){
+				var nombre = this.nuevoeditorial;
+				this.$http.post('/administrador/libros/editoriales', nombre);
+				this.nuevoeditorial = {nombre:'', telefono:''};
+			},
+			registrarAutor: function(e){
+				var nombre = this.nuevoautor;
+				this.$http.post('/administrador/libros/autor', nombre);
+				this.nuevoautor = {nombre:''};
+			},
+		},
+	});
 </script>
 
 @stop
