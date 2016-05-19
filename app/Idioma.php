@@ -11,4 +11,6 @@ class Idioma extends Model
     protected $fillable = ['nombre',]; //fillable <-- Para indicarle que campos quieres llenar.
 
     protected $primaryKey = 'id_idioma';
+    
+    public $timestamps = false;
 }

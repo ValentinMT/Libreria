@@ -11,6 +11,9 @@ use App\Idioma;
 use App\Editorial;
 use App\Autor;
 
+use App\Helpers\Filesystem;
+use App\Repositories\RepositoryLibro;
+
 class LibrosController extends Controller
 {
     public function index()
@@ -20,11 +23,13 @@ class LibrosController extends Controller
 
     public function create()
     {
-        $Idioma = Idioma::all();
+        return view('administrador.libros.create');
+
+        /*$Idioma = Idioma::all();
         $Editorial = Editorial::all();
         $Autor = Autor::all();
         return view('administrador.libros.create',
-            compact('Idioma', 'Editorial', 'Autor'));
+            compact('Idioma', 'Editorial', 'Autor'));*/
     }
 
     /**
@@ -36,9 +41,21 @@ class LibrosController extends Controller
     public function store(Request $request)
     {
         //return $request->all();
-        $file = $request->file('image'); 
+        //dd($request->all());
+        //$file = $request->file('image')->getClientOriginalName(); //Obtiene el nombre de la imagen.
+        $file = $request->file('image');
+        
         if ($request->hasFile('image')) {
-            dd($file);
+            //dd($file);
+            //return Filesystem::upload($file);
+            //NO USAR LOGICA DE ARCHIVOS EN UN CONTROLADOR.
+            //Si existe el archivo lo vamos a almacenar.
+            $filesystem = Filesystem::upload($file);
+            if(!$filesystem){
+                return back()->with('error-file', true);
+            }
+            //Una vez almacenado lo insertamos en la DB.
+            $insert = RepositoryLibro::store($request, $filesystem);
         }
         return back()->with('error-file', true);
     }
@@ -87,4 +104,73 @@ class LibrosController extends Controller
     {
         //
     }
+
+    public function idiomas()
+    {
+        return Idioma::all();
+    }
+
+    public function storeIdioma(Request $request)
+    {
+        $this->validate($request, [
+            'nombre' => 'required|min:3'
+        ]);
+        return Idioma::create($request->all());
+    }
+
+    public function deleteIdioma(Request $request)
+    {   
+        $delete = \DB::table('idioma')
+            ->where('id_idioma', $request->id_idioma)
+            ->delete();
+        if($delete){
+            return $delete;
+        }
+    }
+
+    public function autores()
+    {
+        return Autor::all();
+    }
+
+    public function storeAutor(Request $request)
+    {
+        $this->validate($request, [
+            'nombre' => 'required|min:3'
+        ]);
+        return Autor::create($request->all());
+    }
+
+    public function deleteAutor(Request $request)
+    {   
+        $delete = \DB::table('autor')
+            ->where('id_autor', $request->id_autor)
+            ->delete();
+        if($delete){
+            return $delete;
+        }
+    }
+
+    public function editoriales()
+    {
+        return Editorial::all();
+    }
+
+    public function storeEditorial(Request $request)
+    {
+        $this->validate($request, [
+            'nombre' => 'required|min:3'
+        ]);
+        return Editorial::create($request->all());
+    }
+
+    public function deleteEditorial(Request $request)
+    {   
+        $delete = \DB::table('editorial')
+            ->where('id_editorial', $request->id_editorial)
+            ->delete();
+        if($delete){
+            return $delete;
+        }
+    } 
 }

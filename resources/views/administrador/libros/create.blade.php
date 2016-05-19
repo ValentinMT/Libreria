@@ -73,8 +73,9 @@
 			 				</div>
 			 				<div class="row">
 			 					<div class="col s12">
-			 						<input type="hidden" name="editorial_id_editorial" value="1">
-			 						<input type="hidden" name="idioma_id_idioma" value="1">
+			 						<input type="hidden" name="idioma_id_idioma" value="@{{id_idioma}}">
+			 						<input type="hidden" name="editorial_id_editorial" value="@{{id_editorial}}">
+			 						<input type="hidden" name="autor_id_autor" value="@{{id_autor}}">
 				 					<div class="col s6">
 				 						<a href="/administrador/libros" class="btn waves-effect waves-light cyan darken-3">
 				 							Cancelar
@@ -89,178 +90,112 @@
 			 				</div>
 						</div>
 					</div>
-					<div class="col s12 l3">
-				 		<div class="card-panel form-registro2">
-				 			<center>
-				 				<!-- Modal Trigger -->
-								<a class="modal-trigger waves-effect waves-light btn cyan darken-3" href="#altaIdiomas">
-									Nuevo idioma
-								</a>
-				 				<br><br>
-						        <form action="#">
-								    <div class="input-field col s12">
-									    <select>
-									    	<!--<option value="" disabled selected>Seleccionar...</option>-->
-									    	@foreach($Idioma as $Idioma)
-									    		<option value="1">{{ $Idioma->nombre }}</option>
-									    	@endforeach
-									    </select>
-									    <label>Lista de idiomas</label>
-									  </div>								    
-								</form>
-						        <hr>
-						        <!-- Modal Trigger -->
-								<a class="modal-trigger waves-effect waves-light btn cyan darken-3" href="#altaEditoriales">
-									Nueva editorial
-								</a>
-				 				<br><br>
-						        <form action="#">
-								    <div class="input-field col s12">
-									    <select>
-									    	<!--<option value="" disabled selected>Seleccionar...</option>-->
-									    	@foreach($Editorial as $Editorial)
-									    		<option value="1">{{ $Editorial->nombre }}</option>
-									    	@endforeach
-									    </select>
-									    <label>Lista de editoriales</label>
-									  </div>								    
-								</form>
-						        <hr>
-						        <!-- Modal Trigger -->
-								<a class="modal-trigger waves-effect waves-light btn cyan darken-3" href="#altaAutores">
-									Nuevo autor
-								</a>
-				 				<br><br>
-						        <form action="#">
-								    <div class="input-field col s12">
-									    <select>
-									    	<!--<option value="" disabled selected>Seleccionar...</option>-->
-									    	@foreach($Autor as $Autor)
-									    		<option value="1">{{ $Autor->nombre }}</option>
-									    	@endforeach
-									    </select>
-									    <label>Lista de autores</label>
-									  </div>								    
-								</form>
-				 			</center>
-				 		</div>
-					</div>
 	 			</form>
+
+ 				<div class="col s12 l3">
+ 					@include('administrador.libros.cards')
+ 					<!--@{{ id_idioma }}-->
+ 					<!--@{{ id_editorial }}-->
+ 					<!--@{{ id_autor }}-->
+ 					<div class="card-panel form-registro2">
+ 						<center>
+		    				<img class="responsive-img" src="/imagenes/lineas.png">
+		    			</center>
+ 						<ul class="collapsible" data-collapsible="accordion">
+							<li>
+						      	<div class="collapsible-header"><!--<i class="fa fa-language" aria-hidden="true"></i>-->
+						      		<b>IDIOMAS <i class="fa fa-arrow-down" aria-hidden="true"></i></b>
+						      	</div>
+						      	<div class="collapsible-body">
+						      		<div class="row">
+							      		<p class="agregaIdioma">
+							      			<center>
+							      				<br>
+									      		<a href="#!" class="agregaIdioma modal-trigger waves-effect waves-light btn cyan darken-3" v-on:click="agregarIdioma">
+									      			Nuevo idioma
+									      		</a>
+									      	</center>
+							      		</p>
+						      		</div>
+						      		<div class="row">
+							      		<p class="itemsIdioma left" v-for="idioma in idiomas">
+						      				<input class="with-gap" name="group1" type="radio" id="test1@{{$index}}" value="@{{idioma.id_idioma}}" v-model="id_idioma"/>
+								      		<label for="test1@{{$index}}">@{{idioma.nombre}}</label>
+								      		<button v-on:click="removeIdioma(idioma)" class="remover-idioma">
+								      			<i class="fa fa-trash" aria-hidden="true"></i>
+								      		</button>
+									    </p>
+									</div>
+						      	</div>
+						    </li>
+						    <li>
+						      	<div class="collapsible-header"><!--<i class="fa fa-book" aria-hidden="true"></i>-->
+						      		<b>EDITORIALES <i class="fa fa-arrow-down" aria-hidden="true"></i></b>
+						      	</div>
+						      	<div class="collapsible-body">
+						      		<div class="row">
+							      		<p class="agregaEditorial">
+							      			<center>
+							      				<br>
+									      		<a href="#!" class="agregaEditorial modal-trigger waves-effect waves-light btn cyan darken-3" v-on:click="agregarEditorial">
+									      			Nuevo editorial
+									      		</a>
+									      	</center>
+							      		</p>
+							      	</div>
+							      	<div class="row">
+							      		<p class="itemsEditorial left" v-for="editorial in editoriales">
+						      				<input class="with-gap" name="group2" type="radio" id="test2@{{$index}}" value="@{{editorial.id_editorial}}" v-model="id_editorial"/>
+								      		<label for="test2@{{$index}}">@{{editorial.nombre}}</label>
+								      		<button v-on:click="removeEditorial(editorial)" class="remover-editorial">
+								      			<i class="fa fa-trash" aria-hidden="true"></i>
+								      		</button>
+									    </p>
+									</div>
+						      	</div>
+						    </li>
+						    <li>
+						      	<div class="collapsible-header active"><!--<i class="fa fa-users" aria-hidden="true"></i>-->
+						      		<b>AUTORES <i class="fa fa-arrow-down" aria-hidden="true"></i></b>
+						      	</div>
+						      	<div class="collapsible-body">
+						      		<div class="row">
+							      		<p class="agregaAutor">
+							      			<center>
+							      				<br>
+									      		<a href="#!" class="agregaAutor modal-trigger waves-effect waves-light btn cyan darken-3" v-on:click="agregarAutor">
+									      			Nuevo autor
+									      		</a>
+									      	</center>
+							      		</p>
+							      	</div>
+							      	<div class="row">
+							      		<p class="itemsAutor left" v-for="autor in autores">
+						      				<input class="with-gap" name="group3" type="checkbox" id="test3@{{$index}}" value="@{{autor.id_autor}}" v-model="id_autor"/>
+						      				<!--<input class="with-gap" name="group3" type="checkbox" id="test3@{{$index}}"/>-->
+								      		<label for="test3@{{$index}}">@{{autor.nombre}}</label>
+								      		<button v-on:click="removeAutor(autor)" class="remover-autor">
+								      			<i class="fa fa-trash" aria-hidden="true"></i>
+								      		</button>
+									    </p>
+									</div>
+						      	</div>
+						    </li>
+						</ul>
+ 					</div>
+				</div>
 		 	</div> 	
 		</div>
 	</center>
 </div>
 
-<!-- Modal Structure para idiomas-->
-<form action="/administrador/libros/idiomas" method="POST" @submit.prevent="registrarIdioma">
-	<!-- 
-		@submit.prevent (controlador de evento). Manda a llamar al método que hará la opción de inserción en la base. 
-		@ equivale a v-on (sintáxis de Vue).
-	-->
-	{{csrf_field()}}
-	<div id="altaIdiomas" class="modal modal-fixed-footer">
-		<div class="modal-content">
-	    	<h4>Agregar nuevo idioma</h4>
-	    	<br>
-	      	<div class="row">
-				<div class="input-field col s8">
-					<input type="text" name="nombre" class="validate" required v-model="nuevoidioma.nombre" value="{{ old('nombre') }}"/>
-					<!--objeto JSON: v-model="nuevoidioma.nombre", nuevoidioma (objeto) y nombre (atributo)-->
-					<label id="texto" for="nombre">Nombre</label>
-				</div>
-			</div>
-	    </div>
-	    <div class="modal-footer">
-	    	<div class="row">
-	    		<!--<div class="col s6">
-			  		<a href="/administrador/libros/create" class="btn waves-effect waves-light cyan darken-3">
-						Cancelar
-					</a>
-				</div>-->
-				<div class="col s12"> <!--v-show="nuevoidioma.nombre"-->
-		    		<button class="btn waves-effect waves-light cyan darken-3" type="submit" name="action"
-		    			onclick="Materialize.toast('Editorial agregado correctamente', 3000, 'rounded');">
-			    		Guardar 
-			  		</button>
-		  		</div>
-	    	</div>	
-	    </div>
-	</div>
-</form>
-
-<!-- Modal Structure para editoriales-->
-<form action="/administrador/libros/editoriales" method="POST" @submit.prevent="registrarEditorial">
-	{{csrf_field()}}
-	<div id="altaEditoriales" class="modal modal-fixed-footer">
-		<div class="modal-content">
-	    	<h4>Agregar nueva editorial</h4>
-	      	<div class="row">
-				<div class="input-field col s8">
-					<input type="text" name="nombre" class="validate" required v-model ="nuevoeditorial.nombre"value="{{ old('nombre') }}" />
-					<label id="texto" for="nombre">Nombre</label>
-				</div>
-			</div>
-			<div class="row">
-				<div class="input-field col s8">
-						<input type="text" name="telefono" class="validate" v-model ="nuevoeditorial.telefono"value="{{ old('telefono') }}">
-					    <label id="texto" for="telefono">Teléfono</label>
-				</div>
-			</div>
-	    </div>
-	    <div class="modal-footer">
-	    	<div class="row">
-	    		<!--<div class="col s6">
-			  		<a href="/administrador/libros/create" class="btn waves-effect waves-light cyan darken-3">
-						Cancelar
-					</a>
-				</div>-->
-				<div class="col s12"> <!--v-show="nuevoeditorial.nombre"-->
-		    		<button class="btn waves-effect waves-light cyan darken-3" type="submit" name="action"
-		    			onclick="Materialize.toast('Editorial agregada correctamente', 3000, 'rounded');">
-			    		Guardar 
-			  		</button>
-		  		</div>
-	    	</div>	
-	    </div>
-	</div>
-</form>
-
-<!-- Modal Structure para autores-->
-<form action="/administrador/libros/autores" method="POST" @submit.prevent="registrarAutor">
-	{{csrf_field()}}
-	<div id="altaAutores" class="modal modal-fixed-footer">
-		<div class="modal-content">
-	    	<h4>Agregar nuevo autor</h4>
-	      	<div class="row">
-				<div class="input-field col s8">
-					<input type="text" name="nombre" class="validate" v-model="nuevoautor.nombre" value="{{ old('nombre') }}"/>
-					<label id="texto" for="nombre">Nombre</label>
-				</div>
-			</div>
-	    </div>
-	    <div class="modal-footer">
-	    	<div class="row">
-	    		<!--<div class="col s6">
-			  		<a href="/administrador/libros/create" class="btn waves-effect waves-light cyan darken-3">
-						Cancelar
-					</a>
-				</div>-->
-				<div class="col s12"> <!--v-show="nuevoautor.nombre"-->
-		    		<button class="btn waves-effect waves-light cyan darken-3" type="submit" name="action"
-		    			onclick="Materialize.toast('Autor agregado correctamente', 3000, 'rounded');">
-			    		Guardar 
-			  		</button>
-		  		</div>
-	    	</div>	
-	    </div>
-	</div>
-</form>
-
 @stop
 
 @section('scripts')
 
-<script >	
+	<script src="/js/admin.js"></script>
+
+<!--<script >	
 	//$(document.ready(function(){}));
 
 	//JQUERY
@@ -272,27 +207,27 @@
 
 	//VUE JS
 	Vue.http.headers.common['X-CSRF-TOKEN'] = document.querySelector('#token').getAttribute('value');
-	//Se utiliza para poder tomar datos de frameworks externos, si se elimina únicamente podré utilizar laravel.
+	//Se utiliza para poder tomar datos de frameworks externos, si se elimina únicamente podrá utilizarse Laravel.
 	new Vue({
 		//Atributos.
 		el: 'body', //Elemento sobre el que vamos a trabajar.
 		data: {
 			//titulo: ""
-			nuevoidioma: { //Objeto.
-				nombre:"", //Atributo.
+			nuevoidioma: { //Objeto1.
+				nombre:"", //Atributo1.
 			},
-			nuevoeditorial: {
-				nombre:"",
-				telefono:"",
+			nuevoeditorial: { //Objeto2.
+				nombre:"", //Atributo1.
+				telefono:"", //Atributo2.
 			},
-			nuevoautor: {
-				nombre:"",
+			nuevoautor: { //Objeto3.
+				nombre:"", //Atributo1.
 			}
 		},
 		//Métodos.
 		ready: function(){
 			//alert("Hola Vue.js");
-			//this.registrarAutor();
+			//this.registrarIdioma();
 		},
 		methods: {
 			registrarIdioma: function(e){
@@ -305,19 +240,25 @@
 				this.$http.post('/administrador/libros/idiomas', nombre);
 				//Se limpia la información de los atributos con AJAX.
 				this.nuevoidioma = {nombre:''};
+				Materialize.toast('Idioma agregada correctamente', 3000, 'rounded');
+				$('#altaIdiomas').closeModal();
 			},
 			registrarEditorial: function(e){
 				var nombre = this.nuevoeditorial;
 				this.$http.post('/administrador/libros/editoriales', nombre);
 				this.nuevoeditorial = {nombre:'', telefono:''};
+				Materialize.toast('Editorial agregada correctamente', 3000, 'rounded');
+				$('#altaEditoriales').closeModal();
 			},
 			registrarAutor: function(e){
 				var nombre = this.nuevoautor;
-				this.$http.post('/administrador/libros/autor', nombre);
+				this.$http.post('/administrador/libros/autores', nombre);
 				this.nuevoautor = {nombre:''};
+				Materialize.toast('Autor agregado correctamente', 3000, 'rounded');
+				$('#altaAutores').closeModal();
 			},
 		},
 	});
-</script>
+</script>-->
 
 @stop

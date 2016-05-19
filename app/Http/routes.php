@@ -56,36 +56,42 @@ post('/login', 'LoginController@store');
 
 get('/administrador/panel', 'AdministradorController@index');
 
+//Rutas del administrador.
 Route::group(['middleware' => 'admin'], function() { 
 	//get('/administrador/panel', ['middleware'=>'auth.basic','uses'=>'AdministradorController@index']);
     get('/administrador', 'AdministradorController@index');
     get('/logout', 'AdministradorController@logout');
+    
     Route::resource('/administrador/libros', 'LibrosController');
+    
+    get('/administrador/libros/create/idiomas', 'LibrosController@idiomas');
+    post('/administrador/libros/create/storeIdioma', 'LibrosController@storeIdioma');
+    post('/administrador/libros/create/deleteIdioma', 'LibrosController@deleteIdioma');
+    
+    get('/administrador/libros/create/autores', 'LibrosController@autores');
+    post('/administrador/libros/create/storeAutor', 'LibrosController@storeAutor');
+    post('/administrador/libros/create/deleteAutor', 'LibrosController@deleteAutor');
+    
+    get('/administrador/libros/create/editoriales', 'LibrosController@editoriales');
+    post('/administrador/libros/create/storeEditorial', 'LibrosController@storeEditorial');
+    post('/administrador/libros/create/deleteEditorial', 'LibrosController@deleteEditorial');
 
     //post('/administrador/libros/idiomas', 'IdiomasController@store');
     //post('/administrador/libros/editoriales', 'EditorialesController@store');
     //post('/administrador/libros/autores', 'AutoresController@store');
 
-    post('/administrador/libros/idiomas',function(){
-        if(App\Idioma::create(Request::all())){
-            return redirect("/administrador/libros/create");
-        }
+    /*post('/administrador/libros/idiomas', function(){
+        //Valida si se almacenó en la base de datos el nuevo idioma.
+        return App\Idioma::create(Request::all());
     });
 
-    post('/administrador/libros/editoriales',function(){
-        if(App\Editorial::create(Request::all())){
-            return redirect("/administrador/libros/create");
-        }
+    post('/administrador/libros/editoriales', function(){
+        return App\Editorial::create(Request::all());
     });
 
-    /*get('/administrador/libros/autores',function(){
-        return App\Autor::all();
+    post('/administrador/libros/autores', function(){
+        return App\Autor::create(Request::all());
     });*/
-    post('/administrador/libros/autores',function(){
-        if(App\Autor::create(Request::all())){
-            return redirect("/administrador/libros/create");
-        }
-    });
 
     //get('/administrador/libros', 'LibrosController@index');
     //get('/administrador/libros/create', 'LibrosController@create');

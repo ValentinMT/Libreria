@@ -11,4 +11,6 @@ class Autor extends Model
     protected $fillable = ['nombre',]; //fillable <-- Para indicarle que campos quieres llenar.
 
     protected $primaryKey = 'id_autor';
+
+    public $timestamps = false;
 }

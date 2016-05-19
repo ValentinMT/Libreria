@@ -143,6 +143,13 @@ h5{
 	border-radius: 20px;
 }
 
+.form-registro3{
+	/*margin-top: 30px;*/
+	height: 200px;
+	width: 250px;
+	border-radius: 20px;
+}
+
 .active-item{
 	background-color: #006064;
 }
@@ -179,6 +186,61 @@ h5{
 	height: 50px;
 	border-radius: 10px;
 }
+
+.agregaIdioma, .agregaAutor, .agregaEditorial{
+	margin-top: -40px !important;
+}
+.itemsIdioma, .itemsAutor, .itemsEditorial{
+	margin-top: -70px !important;
+	margin-bottom: 10px !important;
+}
+.remover-idioma, .remover-autor, .remover-editorial{
+	/*font-weight: bold;*/
+	background: none;
+	border: 0;
+	color: red;
+	padding: 0;
+	/*float: right;*/
+}
+
+/*#navegacion{
+	margin-top: 50px;
+}
+#navegacion a{
+	color: black;
+	font-size: 12px;
+}
+.item{
+	color: #272727 !important;
+}
+.item:hover{
+	color: #00838F !important;
+	cursor: pointer !important;
+}
+#navegacion{
+	margin-top: 50px;
+}
+#navegacion a{
+	color: black;
+	font-size: 12px;
+}
+.space{
+	margin-right: 10px;
+	margin-left: 10px;
+}
+.nav-active{
+	background: #e0e0e0;
+	padding: 10px;
+	color: black;
+	border-radius: 5px;
+}
+.nav-active:hover{
+	color: black !important;
+}
+#navegacion a:hover{
+	color: #00838F;
+}*/
+
 /*p{
 	border: 1px solid;
 	margin-top: 50px;

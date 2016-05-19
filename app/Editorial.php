@@ -11,4 +11,6 @@ class Editorial extends Model
     protected $fillable = ['nombre', 'telefono',]; //fillable <-- Para indicarle que campos quieres llenar.
 
     protected $primaryKey = 'id_editorial';
+
+    public $timestamps = false;
 }

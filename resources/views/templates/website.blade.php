@@ -4,7 +4,9 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>Librería</title>
+	<title>Tu Librería</title>
+	<link rel="icon" href="/img/favicon.ico" type="image/x-icon"/>
+	<link href='//fonts.googleapis.com/css?family=Abel' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="/css/materialize.min.css"/>
 	<link rel="stylesheet" href="/css/app.css"/>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
@@ -16,8 +18,9 @@
 		<?php $route = Route::current()->uri(); ?>
 		<nav class="cyan darken-3">
 		    <div class="nav-wrapper">
-		    	<a href="/" class="brand-logo" style="margin-left: 20px">Librería <i class="fa fa-book"></i></a>
+		    	<a href="/" class="brand-logo" style="margin-left: 20px">Tu Librería <i class="fa fa-book"></i></a>
 		      	<a href="/" data-activates="mobile-demo" class="button-collapse" style="margin-left: 20px"><i class="fa fa-bars"></i></a>
+		      	<!--Resoluciones PC-->
 		      	<ul id="nav-mobile" class="right hide-on-med-and-down">
 		        	<li class=@if($route == 'tienda') {{'active-item'}} @endif><a href="/tienda"><i class="fa fa-shopping-bag"></i>  Tienda</a></li>
 		        	<li class=@if($route == 'carrito') {{'active-item'}} @endif><a href="/carrito"><i class="fa fa-shopping-cart"></i>  Carrito</a></li>
@@ -29,6 +32,7 @@
 				        <li class=@if($route == 'acceder') {{'active-item'}} @endif><a href="/acceder"><i class="fa fa-sign-in"></i>  Acceder</a></li>
 				    <?php } ?>
 			    </ul>
+			    <!--Resoluciones Tabletas y Telefonos-->
 			    <ul class="side-nav" id="mobile-demo">
 			        <li><a href="/tienda"><i class="fa fa-shopping-bag"></i>  Tienda</a></li>
 			        <li><a href="/carrito"><i class="fa fa-shopping-cart"></i>  Carrito</a></li>
@@ -47,7 +51,7 @@
         	<div class="row">
             	<div class="col l6 s12">
                 	<h4 class="white-text">
-                		Librería <i class="fa fa-book"></i>
+                		Tu Librería <i class="fa fa-book"></i>
                 	</h4>
                 	<p class="grey-text text-lighten-4">Leer es una experiencia de vida.</p>
               	</div>
