@@ -7,12 +7,10 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use App\Idioma;
-use App\Editorial;
-use App\Autor;
+use App\{Idioma, Editorial, Autor, Libro};
 
 use App\Helpers\Filesystem;
-use App\Repositories\RepositoryLibro;
+use App\Repositories\{RepositoryLibro, RepositoryAutorLibro};
 
 class LibrosController extends Controller
 {
@@ -40,6 +38,34 @@ class LibrosController extends Controller
      */
     public function store(Request $request)
     {
+        //Validar Idioma, Editorial y Autor(es).
+        //dd($request->all());
+
+        //String "1,2,3"
+        $id_autor = explode(',', $request->id_autores); //Array [1,2,3]
+
+        //dd($id_autor);
+
+        // 1,2
+        /*$id = "";
+        for($i = 0; $i < strlen($id_autor); $i++){
+            if($id_autor[$i] != ','){
+                $id .= $id_autor[$i];
+                // $id = 2
+            } else {
+                //Insertamos en la base de datos.
+
+                // $id = 1
+            }
+
+            if($i == strlen($id_autores) - 1){
+                //Insertar $id.
+                //explode(delimiter, string);
+            }
+        }*/
+        /*idioma_id_idioma
+        editorial_id_editorial
+        autor_id_autor*/
         //return $request->all();
         //dd($request->all());
         //$file = $request->file('image')->getClientOriginalName(); //Obtiene el nombre de la imagen.
@@ -56,6 +82,12 @@ class LibrosController extends Controller
             }
             //Una vez almacenado lo insertamos en la DB.
             $insert = RepositoryLibro::store($request, $filesystem);
+
+            if(is_object($insert)){
+                $autores_libros = RepositoryAutorLibro::InsertAutoresLibros($id_autor, $insert);
+                return back()->with('success',true);
+            }
+            return back()->with('error',false);
         }
         return back()->with('error-file', true);
     }
@@ -103,6 +135,10 @@ class LibrosController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function libros(){
+        return Libro::all();
     }
 
     public function idiomas()

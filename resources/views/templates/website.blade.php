@@ -4,6 +4,7 @@
 
 <head>
 	<meta charset="UTF-8">
+	<meta id="token" name="token" value="{{ csrf_token() }}"> <!--Token de VUEJS-->
 	<title>Tu Librería</title>
 	<link rel="icon" href="/img/favicon.ico" type="image/x-icon"/>
 	<link href='//fonts.googleapis.com/css?family=Abel' rel='stylesheet' type='text/css'>
@@ -77,8 +78,11 @@
     </footer>
 
 	<script src="/js/jquery-2.2.1.min.js"></script>
+	<script src="/js/vue.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/0.7.0/vue-resource.min.js"></script>
 	<script src="/js/materialize.min.js"></script>
 	<script src="/js/app.js"></script>
+	@yield('scripts')
 </body>
 
 </html>

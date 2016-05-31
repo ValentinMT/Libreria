@@ -56,6 +56,8 @@ post('/login', 'LoginController@store');
 
 get('/administrador/panel', 'AdministradorController@index');
 
+get('/tienda/libros', 'LibrosController@libros');
+
 //Rutas del administrador.
 Route::group(['middleware' => 'admin'], function() { 
 	//get('/administrador/panel', ['middleware'=>'auth.basic','uses'=>'AdministradorController@index']);

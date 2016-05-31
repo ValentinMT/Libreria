@@ -15,7 +15,7 @@ new Vue({
 		editoriales: [],
 		id_idioma: "",
 		id_editorial: "",
-		id_autor: []
+		id_autores: [],
 	},
 	// Metodos
 	ready: function() {
@@ -101,6 +101,17 @@ new Vue({
 				this.editoriales.$remove(editorial);
 				Materialize.toast('Editorial eliminada de forma correcta', 3500, 'rounded')
 			});
-		}
+		},
+		autorLibro: function(autor, i){
+			//alert(autor);	
+			var autor_checked = document.getElementById("test3"+i).checked;
+			//console.log(autor);
+			if(autor_checked){
+				this.id_autores.push(autor);
+			} else {
+				this.id_autores.$remove(autor);
+			}
+
+		},
 	}
 });

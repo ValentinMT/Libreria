@@ -19,6 +19,9 @@
 		 			<center>
 		 				<h5><b>Registrar libro</b></h5>
 		 				<!--<label>@{{titulo}}</label>-->
+		 				@if(Session::has('success'))
+		 					<h6>Inserción correcta!</h6>
+		 				@endif
 		 			</center>	
 		 		</div>
 		 	</div>
@@ -75,7 +78,7 @@
 			 					<div class="col s12">
 			 						<input type="hidden" name="idioma_id_idioma" value="@{{id_idioma}}">
 			 						<input type="hidden" name="editorial_id_editorial" value="@{{id_editorial}}">
-			 						<input type="hidden" name="autor_id_autor" value="@{{id_autor}}">
+			 						<input type="hidden" name="id_autores" value="@{{id_autores}}">
 				 					<div class="col s6">
 				 						<a href="/administrador/libros" class="btn waves-effect waves-light cyan darken-3">
 				 							Cancelar
@@ -96,7 +99,7 @@
  					@include('administrador.libros.cards')
  					<!--@{{ id_idioma }}-->
  					<!--@{{ id_editorial }}-->
- 					<!--@{{ id_autor }}-->
+ 					<!--@{{ id_autores }}-->
  					<div class="card-panel form-registro2">
  						<center>
 		    				<img class="responsive-img" src="/imagenes/lineas.png">
@@ -171,7 +174,8 @@
 							      	</div>
 							      	<div class="row">
 							      		<p class="itemsAutor left" v-for="autor in autores">
-						      				<input class="with-gap" name="group3" type="checkbox" id="test3@{{$index}}" value="@{{autor.id_autor}}" v-model="id_autor"/>
+						      				<input class="with-gap" name="group3" type="checkbox" id="test3@{{$index}}"
+						      					v-on:click="autorLibro(autor.id_autor, $index)"/> <!--value="@{{autor.id_autor}}" v-model="id_autores"-->
 						      				<!--<input class="with-gap" name="group3" type="checkbox" id="test3@{{$index}}"/>-->
 								      		<label for="test3@{{$index}}">@{{autor.nombre}}</label>
 								      		<button v-on:click="removeAutor(autor)" class="remover-autor">
@@ -183,6 +187,7 @@
 						    </li>
 						</ul>
  					</div>
+ 					<!--@{{ $data | json }}-->
 				</div>
 		 	</div> 	
 		</div>

@@ -203,6 +203,11 @@ h5{
 	/*float: right;*/
 }
 
+#imagenLibro{
+	width: 150px !important;
+	height: 200px !important;
+}
+
 /*#navegacion{
 	margin-top: 50px;
 }

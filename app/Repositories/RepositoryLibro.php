@@ -18,6 +18,10 @@ class RepositoryLibro
 		$libro->editorial_id_editorial = $request->editorial_id_editorial;
 		$libro->descuento = $request->descuento;
 		$libro->imagen = $path;
-		$libro->save();
+		if($libro->save()){
+			return $libro;
+			//return true;
+		}
+		return false;
 	}
 }
