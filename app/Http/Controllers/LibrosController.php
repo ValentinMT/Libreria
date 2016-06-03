@@ -92,53 +92,47 @@ class LibrosController extends Controller
         return back()->with('error-file', true);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         //
     }
 
     public function libros(){
-        return Libro::all();
+        //return Libro::all();
+        /*
+        $libros = \DB::table('libro')
+            ->join('idioma', 'libro.idioma_id_idioma', '=','idioma.id_idioma')
+            ->select('libro.id_libro','libro.nombre','libro.precio', 'libro.imagen', 'idioma.nombre as idioma')
+            //->get();
+            ->paginate(3);
+        return view('website.tienda', compact('libros'));
+        */
+        $libros = RepositoryLibro::all();
+        return view('website.tienda', compact('libros'));
+    }
+
+    public function detalle(Request $request)
+    {
+        //return $request->all();
+        $libro = RepositoryLibro::detalle($request);
+        $autores = RepositoryLibro::getAutores($request);
+        //return ['libro' => $libro];
+        return compact('libro','autores');
     }
 
     public function idiomas()

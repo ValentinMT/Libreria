@@ -6,9 +6,13 @@ get('/', function () {
     //return "Usando Git"; //Cambio realizado para crear la versión 2.
 });
 
+/*
 get('/tienda', function() {
 	return view('website.tienda');
 });
+*/
+
+get('/tienda', 'LibrosController@libros');
 
 get('/carrito', function() {
 	return view('website.carrito');
@@ -56,7 +60,9 @@ post('/login', 'LoginController@store');
 
 get('/administrador/panel', 'AdministradorController@index');
 
-get('/tienda/libros', 'LibrosController@libros');
+get('/detalle-libro', 'LibrosController@detalle');
+
+//get('/tienda/libros', 'LibrosController@libros');
 
 //Rutas del administrador.
 Route::group(['middleware' => 'admin'], function() { 
